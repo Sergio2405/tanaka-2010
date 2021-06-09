@@ -1,0 +1,82 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Serie 3
+{% endblock %}
+
+{% block content %}
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-g1fv{background-color:#333333;color:#ffffff;border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-0449{background-color:#333333;color:#ffffff;border-color:inherit;text-align:center;vertical-align:top}
+.tg .tg-fymr{font-weight:bold;border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-g1fv">Alternativa</th>
+    <th class="tg-0449" colspan="2">Lotería A</th>
+    <th class="tg-0449" colspan="2">Lotería B</th>
+  </tr>
+  <tr>
+    <td class="tg-fymr">29</td>
+    <td class="tg-0pky">25 solex con 50% de seguridad</td>
+    <td class="tg-0pky">-4 solex con 50% de seguridad</td>
+    <td class="tg-0pky">30 solex con 50% de seguridad</td>
+    <td class="tg-0pky">-21 solex con 50% de seguridad</td>
+  </tr>
+  <tr>
+    <td class="tg-fymr">30</td>
+    <td class="tg-0pky">4 solex con 50% de seguridad</td>
+    <td class="tg-0pky">-4 solex con 50% de seguridad</td>
+    <td class="tg-0pky">30 solex con 50% de seguridad</td>
+    <td class="tg-0pky">-21 solex con 50% de seguridad</td>
+  </tr>
+  <tr>
+    <td class="tg-fymr">31</td>
+    <td class="tg-0pky">1 solex con 50% de seguridad</td>
+    <td class="tg-0pky">-4 solex con 50% de seguridad</td>
+    <td class="tg-0pky">30 solex con 50% de seguridad</td>
+    <td class="tg-0pky">-21 solex con 50% de seguridad</td>
+  </tr>
+  <tr>
+    <td class="tg-fymr">32</td>
+    <td class="tg-0pky">1 solex con 50% de seguridad</td>
+    <td class="tg-0pky">-4 solex con 50% de seguridad</td>
+    <td class="tg-0pky">30 solex con 50% de seguridad</td>
+    <td class="tg-0pky">-16 solex con 50% de seguridad</td>
+  </tr>
+  <tr>
+    <td class="tg-fymr">33</td>
+    <td class="tg-0pky">1 solex con 50% de seguridad</td>
+    <td class="tg-0pky">-8 solex con 50% de seguridad</td>
+    <td class="tg-0pky">30 solex con 50% de seguridad</td>
+    <td class="tg-0pky">-16 solex con 50% de seguridad</td>
+  </tr>
+  <tr>
+    <td class="tg-fymr">34</td>
+    <td class="tg-0pky">1 solex con 50% de seguridad</td>
+    <td class="tg-0pky">-8 solex con 50% de seguridad</td>
+    <td class="tg-0pky">30 solex con 50% de seguridad</td>
+    <td class="tg-0pky">-14 solex con 50% de seguridad</td>
+  </tr>
+  <tr>
+    <td class="tg-fymr">35</td>
+    <td class="tg-0pky">1 solex con 50% de seguridad</td>
+    <td class="tg-0pky">-8 solex con 50% de seguridad</td>
+    <td class="tg-0pky">30 solex con 50% de seguridad</td>
+    <td class="tg-0pky">-11 solex con 50% de seguridad</td>
+  </tr>
+</table>
+
+    <p>
+        {% formfields %}
+    </p>
+    <p>
+    {% next_button %}
+    </p>
+
+{% endblock %}
