@@ -124,58 +124,43 @@
 
 <br>
 
-<!-- <label for="slider" class="form-label">Mueva el deslizador para escoger el numero de loterias para A como para B</label>
 
-<input type="range" style='width:500px;' class="form-range" id="slider" min = '0' step = '0.001' max = '14' oninput="{
-  choice_A.innerText = (this.value != '0') ? parseInt(this.value) : 'Ninguna'
-  choice_B.innerText = (parseInt(this.value)+1 != 15) ? parseInt(this.value)+1 : 'Ninguna' }" onchange="sombrear()">
+<label for="slider" class="form-label">Mueva el deslizador para escoger el numero de loterias para A como para B</label>
+
+<input type="range" style='width:500px;' id="slider" min = '0' step = '1' max = '14' oninput="{
+  choice_A.innerText = (this.value != '0') ? parseInt(this.value)+14 : 'Ninguna';
+  choice_B.innerText = (parseInt(this.value)+1 != 15) ? parseInt(this.value)+1+14 : 'Ninguna';
+  sombrear()}" >
 
 <p></p>
-<label>Escojo la lotería A desde la opción 1 hasta la opción:</label>
+<label>Escojo la lotería A desde la opción 15 hasta la opción:</label>
 <label><strong id = 'choice_A'></strong></label>
 <label> y Escojo la lotería B desde la opción:</label>
-<label><strong id = 'choice_B'></strong></label> -->
-
-<label for="choices_A">Escojo la lotería A desde la opción 1 hasta la opción:</label>
-  
-<select name="choices_A" id="slider" onchange="{
-  sombrear()
-  choice_B.innerHTML = (parseInt(this.value) + 1 == 29) ? 'Ninguna' : parseInt(this.value) + 1 }">
-  <option value="-1">-------</option>
-</select>
-
-<label for="choices_B">Escojo la lotería B desde la opción:</label>
-<label id = 'choice_B'></label>
+<label><strong id = 'choice_B'></strong></label>
   
 <p></p>
-
-{% next_button %}
 
 <input name = 'first_choice_2' id = 'first_choice_2' hidden>
 <input name = 'second_choice_2' id = 'second_choice_2' hidden>
 
+{{ formfield_errors 'first_choice_2' }}
+{{ formfield_errors 'second_choice_2' }}
+
+{% next_button %}
+
 <script>
-
-  var backend_choices_A = {{ form.first_choice_2.choices }};
-
-  for (let i of backend_choices_A)
-  {
-    let new_option = document.createElement('option');
-    new_option.value= i[0];
-    new_option.innerHTML= i[1];
-    
-    document.getElementById('slider').appendChild(new_option);
-  }
 
   function sombrear()
   {
     const selected_value_A = document.getElementById('slider').value;
+
+    console.log(selected_value_A.value)
  
-    document.getElementById('first_choice_2').value = parseInt(selected_value_A);
-    paint(1,selected_value_A-14,'rgb(250, 223, 174)','A')
+    document.getElementById('first_choice_2').value = parseInt(selected_value_A)+14 == 14 ? 0 : parseInt(selected_value_A) + 14;
+    paint(1,selected_value_A,'rgb(250, 243, 201)','A')
   
-    document.getElementById('second_choice_2').value = parseInt(selected_value_A) + 1;
-    paint(parseInt(selected_value_A)+1-14,14,'rgb(250, 223, 174)','B')
+    document.getElementById('second_choice_2').value = parseInt(selected_value_A) + 15 == 29 ? 0 : parseInt(selected_value_A) + 15;
+    paint(parseInt(selected_value_A)+1,14,'rgb(250, 243, 201)','B')
     
   }
 

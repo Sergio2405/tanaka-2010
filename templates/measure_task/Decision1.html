@@ -128,23 +128,16 @@
 
 <label for="slider" class="form-label">Mueva el deslizador para escoger el numero de loterias para A como para B</label>
 
-<input type="range" style='width:500px;' class="form-range" id="slider" min = '0' step = '0.001' max = '14' oninput="{
-  choice_A.innerText = (this.value != '0') ? parseInt(this.value) : 'Ninguna'
-  choice_B.innerText = (parseInt(this.value)+1 != 15) ? parseInt(this.value)+1 : 'Ninguna' }" onchange="sombrear()">
+<input type="range" style='width:500px;' id="slider" min = '0' step = '1' max = '14' oninput="{
+  choice_A.innerText = (this.value != '0') ? parseInt(this.value) : 'Ninguna';
+  choice_B.innerText = (parseInt(this.value)+1 != 15) ? parseInt(this.value)+1 : 'Ninguna';
+  sombrear()}" >
 
 <p></p>
 <label>Escojo la lotería A desde la opción 1 hasta la opción:</label>
 <label><strong id = 'choice_A'></strong></label>
 <label> y Escojo la lotería B desde la opción:</label>
 <label><strong id = 'choice_B'></strong></label>
-
-<!-- <label for="choices_A">Escojo la lotería A desde la opción 1 hasta la opción:</label>
-  
-<select name="choices_A" id="choices_A" onchange="sombrear()">
-  <option value="-1">-------</option>
-</select>
-
-<label for="choices_B">Escojo la lotería B desde la opción:</label> -->
   
 <p></p>
 
@@ -152,31 +145,23 @@
 <input name = 'second_choice_1' id = 'second_choice_1' hidden>
 
 {{ formfield_errors 'first_choice_1' }}
+{{ formfield_errors 'second_choice_1' }}
 
 {% next_button %}
 
 <script>
 
-  // var backend_choices_A = {{ form.first_choice_1.choices }};
-
-  // for (let i of backend_choices_A)
-  // {
-  //   let new_option = document.createElement('option');
-  //   new_option.value= i[0];
-  //   new_option.innerHTML= i[1];
-    
-  //   document.getElementById('choices_A').appendChild(new_option);
-  // }
-
   function sombrear()
   {
     const selected_value_A = document.getElementById('slider').value;
+
+    console.log(selected_value_A.value)
  
     document.getElementById('first_choice_1').value = parseInt(selected_value_A);
-    paint(1,selected_value_A,'rgb(250, 223, 174)','A')
+    paint(1,selected_value_A,'rgb(250, 243, 201)','A')
   
-    document.getElementById('second_choice_1').value = parseInt(selected_value_A) + 1;
-    paint(parseInt(selected_value_A)+1,14,'rgb(250, 223, 174)','B')
+    document.getElementById('second_choice_1').value = parseInt(selected_value_A) + 1 == 15? 0 : parseInt(selected_value_A) + 1;
+    paint(parseInt(selected_value_A)+1,14,'rgb(250, 243, 201)','B')
     
   }
 
