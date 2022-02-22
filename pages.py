@@ -46,5 +46,5 @@ class Results(Page):
 
 
 page_sequence = [
-    # Introduction, Example1, Example2, Example3, Example4, 
+    Introduction, Example1, Example2, Example3, Example4, 
 Decision1, Decision2, Decision3, Results]
