@@ -124,12 +124,101 @@
   </tr>
 </table>
 
-    <p>
-      {% formfields %}
-    </p>
-    <p>
-    {% next_button %}
-    </p>
+<br>
 
+<label for="slider" class="form-label">Mueva el deslizador para escoger el numero de loterias para A como para B</label>
+
+<input type="range" style='width:500px;' id="slider" min = '0' step = '1' max = '14' oninput="{
+  choice_A.innerText = (this.value != '0') ? parseInt(this.value) : 'Ninguna';
+  choice_B.innerText = (parseInt(this.value)+1 != 15) ? parseInt(this.value)+1 : 'Ninguna';
+  sombrear()}" >
+
+<p></p>
+<label>Escojo la lotería A desde la opción 1 hasta la opción:</label>
+<label><strong id = 'choice_A'></strong></label>
+<label> y Escojo la lotería B desde la opción:</label>
+<label><strong id = 'choice_B'></strong></label>
+  
+<p></p>
+
+<input name = 'first_choice_1' id = 'first_choice_1' hidden>
+<input name = 'second_choice_1' id = 'second_choice_1' hidden>
+
+{{ formfield_errors 'first_choice_1' }}
+{{ formfield_errors 'second_choice_1' }}
+
+{% next_button %}
+
+<script>
+
+  function sombrear()
+  {
+    const selected_value_A = document.getElementById('slider').value;
+
+    console.log(selected_value_A.value)
+ 
+    document.getElementById('first_choice_1').value = parseInt(selected_value_A);
+    paint(1,selected_value_A,'rgb(250, 243, 201)','A')
+  
+    document.getElementById('second_choice_1').value = parseInt(selected_value_A) + 1 == 15? 0 : parseInt(selected_value_A) + 1;
+    paint(parseInt(selected_value_A)+1,14,'rgb(250, 243, 201)','B')
+    
+  }
+
+  // orange: 'rgb(250, 223, 174)'
+  function paint(start,end,color,lottery)
+  {
+
+    let table = document.getElementsByTagName('table')[0];
+    let list_td = table.getElementsByTagName('tr');
+    //cleaning the color
+
+    if (lottery == 'A')
+    {
+      for (let td = 1; td < list_td.length; td ++)
+      {
+        let first = list_td[td].getElementsByTagName('td')[1];
+        let second = list_td[td].getElementsByTagName('td')[2]; 
+
+        first.style.backgroundColor = "white";
+        second.style.backgroundColor = "white";
+      }
+      
+      // assigning the color
+      for (let td = start ; td <= end; td ++ )
+      {
+        let first = list_td[td].getElementsByTagName('td')[1];
+        let second = list_td[td].getElementsByTagName('td')[2]; 
+
+        first.style.backgroundColor = color;
+        second.style.backgroundColor = color;
+        
+      }
+    }else
+    {
+      for (let td = 1; td < list_td.length; td ++)
+      {
+        let first = list_td[td].getElementsByTagName('td')[3];
+        let second = list_td[td].getElementsByTagName('td')[4]; 
+
+        first.style.backgroundColor = "white";
+        second.style.backgroundColor = "white";
+      }
+      
+      // assigning the color
+      for (let td = start ; td <= end; td ++ )
+      {
+        let first = list_td[td].getElementsByTagName('td')[3];
+        let second = list_td[td].getElementsByTagName('td')[4]; 
+
+        first.style.backgroundColor = color;
+        second.style.backgroundColor = color;
+        
+      }
+    }
+
+  }
+  
+</script>
 
 {% endblock %}
